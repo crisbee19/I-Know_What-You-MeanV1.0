@@ -1,5 +1,6 @@
 //Cristian Padilla Soto
 //Alannis Rubianes Febo
+
 #include <iostream>
 #include <fstream>
 /*
@@ -28,7 +29,7 @@ Esta función codifica el mensaje que es entrado por el usuario y es convertido e
 string codificar(const string& msgOG) {
     stringstream msgcode;
     istringstream leer(msgOG);
-    //
+    //Esto nos permite leer el mensage original letra por letra.
     string word;
     while (leer >> word) {
         msgcode << word[0];
@@ -83,9 +84,9 @@ int main() {
         cout << "\n";
         cout << "¡Bienvenido a I-Know-What-You-Mean! \n";
         cout << endl;
-        cout << "******************************************** \n";
         cout << endl;
-        cout << "Por favor entre el 1 para entrar su frase secreta o el 2 para revelar su significado oculto:  \n";
+        cout << "Tip: Piense bien en las iniciales que desea usar... \n";
+        cout << "Por favor entre el 1 para entrar su frase secreta, luego se le mostrara su significado oculto:  \n";
         cin >> decision;
         cin.ignore();
         if (decision == 1) {
@@ -95,20 +96,21 @@ int main() {
 
             BorrarPantalla();
             cout << endl;
-            cerr << "ERROR, numero tiene que ser 1 o 2! \n";
+            cerr << "ERROR, numero tiene que ser 1! \n";
             Sleep(2000);
         }
     }
     if (decision == 1) {
-        cout << "Por favor entre el mensaje que quiere codificar: ";
+        cout << "Por favor entre el mensaje que quiere codificar: \n";
         getline(cin, mensaje);
         string codificado = codificar(mensaje);
         escribirArchivo(codificado);
+        cout << endl; 
         cout << "El mensaje codificado ha sido guardado!" << endl;
         string msgOG = leerArchivo();
         string msgcode = decodificar(msgOG);
+        cout << endl;
         cout << "El mensaje oculto es : " << msgcode << endl;
     }
-
     return 0;
 }
