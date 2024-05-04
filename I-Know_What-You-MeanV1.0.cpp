@@ -208,7 +208,6 @@ int main() {
 
             string decodedMessage, translatedMessage;
             cout << "Enter a message to encode! \n";
-            cin.ignore();
             getline(cin, decodedMessage);
 
             BorrarPantalla();
