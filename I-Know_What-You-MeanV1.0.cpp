@@ -20,9 +20,9 @@
 
 #include <string> //Provides operations for creating and manipulating strings
 
-#include <ctime>
+#include <ctime> // Works with date and time info
 
-#include <cstdlib>
+#include <cstdlib> // Used for rand and srand (random number generation)
 
 using namespace std;
 
@@ -147,6 +147,10 @@ string searchWordWithLetter(char letter) {
 
 int main() {
 
+    // ********************************************* Cristian *********************************************
+
+    system("Color 0B");
+
     int decision;
     string mensaje;
     bool validez = false; //It's used to check if the user input is correct
@@ -158,13 +162,21 @@ int main() {
 
         cout << endl;
         cout << "Tip: Think carefully of the word's initials ... \n";
-        cout << "Please enter 1 to type in your secret phrase, later your secret message will be shown!! \n";
-        cout << endl;
-        cout << "Or..";
+
+        system("PAUSE");
+
+        BorrarPantalla();
+
+
+        cout << "Please enter 1 to type in your secret phrase, later your secret message will be shown!!\n";
+        cout << "Or..\n";
         cout << "Press 2 for a more fun method!!";
         cout << endl;
         cin >> decision;
         cin.ignore();
+
+        BorrarPantalla();
+
         if (decision == 1 || decision == 2) {
             validez = true;
         }
@@ -184,17 +196,20 @@ int main() {
         cout << endl;
         cout << "The decodified message has been saved in a file!" << endl;
         string msgOG = leerArchivo(); //the contents on the file are saved into the function
-        string msgcode = decodificar(msgOG); //Tge saved content is decodified and saved  into a new variable
+        string msgcode = decodificar(msgOG); //The saved content is decodified and saved  into a new variable
         cout << endl;
         cout << "The hidden message is... : " << msgcode << endl;
     }
     else {
-        //***********************************************************************************************************************************
+
+        // ******************************************** Alannis ****************************************************
 
         string decodedMessage, translatedMessage;
         cout << "Enter a message to encode! \n";
         cin.ignore();
         getline(cin, decodedMessage);
+
+        BorrarPantalla();
 
         for (int i = 0; i < decodedMessage.length(); i++) { // loop iterates through EACH character in the user's input
             char letter_again = decodedMessage[i];
@@ -213,9 +228,11 @@ int main() {
             }
 
         }
-        cout << endl;
-        cout << "The secret message is: " << translatedMessage;
-        cout << endl;
+
+        cout << "The secret message is: "; 
+
+        cout << translatedMessage  << endl;
+
         cout << "Wonder what that means... ";
     }
     return 0;
