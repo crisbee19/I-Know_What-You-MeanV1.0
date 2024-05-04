@@ -129,13 +129,13 @@ const string wordArray[26][6] = { // Defined as a constant since the dimensions 
 
 string searchWordWithLetter(char letter) {
 
-    int index = toupper(letter) - 'A'; // basically converts the letter to uppercase and maps it to an index in the range from 0 to 25
+    int position = toupper(letter) - 'A'; // basically converts the letter to uppercase and maps it to an index in the range from 0 to 25
 
-    if (index >= 0 && index < 26) {
-        srand(static_cast<unsigned int>(time(NULL)));
+    if (position >= 0 && position < 26) {
+        srand(time(NULL));
         int randomWord = rand() % 6; // ensures that when a letter is repeated the program selects different words from the array to give it some variety
 
-        return wordArray[index][randomWord]; // returns the randomly selected word
+        return wordArray[position][randomWord]; // returns the randomly selected word
     }
     return "";
 }
@@ -188,6 +188,7 @@ int main() {
                 cout << endl;
                 cerr << "ERROR, number has to be 1 or 2! \n";
                 Sleep(2000);
+                
             }
         }
         if (decision == 1) {
