@@ -12,8 +12,6 @@
 
 #include <sstream> //It is similar to the string library only that it works by constructing, manipulating and extracting character string data. 
 
-#include <vector> // Vectors give various tools like storing, accessing, inserting elements in a more efficient way, in other words, dynamic access.
-
 #include <Windows.h> // Provides the functionality of the "sleep" function
 
 #include <chrono> // Provides the timing ffunctionality in the sleep function.
@@ -30,7 +28,7 @@ using namespace std;
 
 
 
-// ********************************************************************************************* FUNCIONES *****************************************************************************************************
+// ********************************************************************************************* FUNCIONES ****************************************************************************************************
 
 
 
@@ -149,91 +147,103 @@ int main() {
 
     // ********************************************* Cristian *********************************************
 
-    system("Color 0B");
+    bool exitProgram = false;
 
-    int decision;
-    string mensaje;
-    bool validez = false; //It's used to check if the user input is correct
-    while (!validez) {
-        cout << endl;
-        cout << "************************************* \n";
-        cout << "Welcome to I-Know-What-You-Mean! \n";
-        cout << "************************************* \n";
+    while (!exitProgram) { // Loop until the user wants to exit the program
 
-        cout << endl;
-        cout << "Tip: Think carefully of the word's initials ... \n";
+        system("Color 0B");
 
-        system("PAUSE");
+        int decision;
+        string mensaje;
+        bool validez = false; //It's used to check if the user input is correct
+        while (!validez) {
+            cout << endl;
+            cout << "************************************* \n";
+            cout << "Welcome to I-Know-What-You-Mean! \n";
+            cout << "************************************* \n";
 
-        BorrarPantalla();
+            cout << endl;
+            cout << "Tip: Think carefully of the word's initials ... \n";
+
+            system("PAUSE");
+
+            BorrarPantalla();
 
 
-        cout << "Please enter 1 to type in your secret phrase, later your secret message will be shown!!\n";
-        cout << "Or..\n";
-        cout << "Press 2 for a more fun method!!";
-        cout << endl;
-        cin >> decision;
-        cin.ignore();
+            cout << "Please enter 1 to type in your secret phrase, later your secret message will be shown!!\n";
+            cout << "Or..\n";
+            cout << "Press 2 for a more fun method!!";
+            cout << endl;
+            cin >> decision;
+            cin.ignore();
 
-        BorrarPantalla();
+            BorrarPantalla();
 
-        if (decision == 1 || decision == 2) {
-            validez = true;
+            if (decision == 1 || decision == 2) {
+                validez = true;
+            }
+            else {
+
+                BorrarPantalla();
+                cout << endl;
+                cerr << "ERROR, number has to be 1 or 2! \n";
+                Sleep(2000);
+            }
+        }
+        if (decision == 1) {
+            cout << "Please enter the phrase you want to decode: \n";
+            getline(cin, mensaje); //the phrase gets stored
+            string codificado = codificar(mensaje);
+            escribirArchivo(codificado);
+            cout << endl;
+            cout << "The decodified message has been saved in a file!" << endl;
+            string msgOG = leerArchivo(); //the contents on the file are saved into the function
+            string msgcode = decodificar(msgOG); //The saved content is decodified and saved  into a new variable
+            cout << endl;
+            cout << "The hidden message is... : " << msgcode << endl;
         }
         else {
 
+            // ******************************************** Alannis ****************************************************
+
+            string decodedMessage, translatedMessage;
+            cout << "Enter a message to encode! \n";
+            cin.ignore();
+            getline(cin, decodedMessage);
+
             BorrarPantalla();
-            cout << endl;
-            cerr << "ERROR, number has to be 1 or 2! \n";
-            Sleep(2000);
-        }
-    }
-    if (decision == 1) {
-        cout << "Please enter the phrase you want to decode: \n";
-        getline(cin, mensaje); //the phrase gets stored
-        string codificado = codificar(mensaje);
-        escribirArchivo(codificado);
-        cout << endl;
-        cout << "The decodified message has been saved in a file!" << endl;
-        string msgOG = leerArchivo(); //the contents on the file are saved into the function
-        string msgcode = decodificar(msgOG); //The saved content is decodified and saved  into a new variable
-        cout << endl;
-        cout << "The hidden message is... : " << msgcode << endl;
-    }
-    else {
 
-        // ******************************************** Alannis ****************************************************
+            for (int i = 0; i < decodedMessage.length(); i++) { // loop iterates through EACH character in the user's input
+                char letter_again = decodedMessage[i];
 
-        string decodedMessage, translatedMessage;
-        cout << "Enter a message to encode! \n";
-        cin.ignore();
-        getline(cin, decodedMessage);
-
-        BorrarPantalla();
-
-        for (int i = 0; i < decodedMessage.length(); i++) { // loop iterates through EACH character in the user's input
-            char letter_again = decodedMessage[i];
-
-            if (isalpha(letter_again)) {
-                // isalpha checks if each letter is alphabetic
-                // it ignores any character that isn't a letter in the user input (i.e., a space)
+                if (isalpha(letter_again)) {
+                    // isalpha checks if each letter is alphabetic
+                    // it ignores any character that isn't a letter in the user input (i.e., a space)
 
 
-                translatedMessage += searchWordWithLetter(letter_again) + " ";
+                    translatedMessage += searchWordWithLetter(letter_again) + " ";
 
-                // The word searcher function is called to find a matching word for each letter,
-                // then it appends the word match to the translatedMessage string.
+                    // The word searcher function is called to find a matching word for each letter,
+                    // then it appends the word match to the translatedMessage string.
 
-                // The process repeats for every other letter in the input 
+                    // The process repeats for every other letter in the input 
+                }
+
             }
 
+            cout << "The secret message is: ";
+
+            cout << translatedMessage << endl;
+
+            cout << "Wonder what that means... ";
+
+            
         }
 
-        cout << "The secret message is: "; 
+        Sleep(7000);
 
-        cout << translatedMessage  << endl;
-
-        cout << "Wonder what that means... ";
+        BorrarPantalla();
     }
+
     return 0;
 }
