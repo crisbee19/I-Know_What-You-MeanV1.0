@@ -34,7 +34,36 @@ Ink Magic Boat Ocean Rabbit Earth Dice
 
 ***********************************************************************************************
 
+# How to Use
+-Enter: press to continue onward with the program.
 
+-1: press to enter phrase which is later decodified.
 
+-2: press to enter phrase which is later encodified.
 
+# Version History
 
+- Version 1.00
+  - Added gittatributes, .gitignore, README.md and license.txt.
+  - Added project files including codifying functions and text file functions.
+    
+- Version 1.02
+  - Verified adequate functioning of text file function.
+    
+- Version 1.03
+  - Added encoding function and related text on main.
+    
+- Version 1.04
+  - Additional text changes.
+    
+- Version 1.05
+  - Additional comments added + language change from Spanish to English.
+  - Added a menu loop.
+  - Fixed error corresponding to encoding function.
+    
+- Version 1.05
+  - Updated README.
+  - Changed the name of several variables for better readability.
+   
+- Version 1.06
+  - Merged "master" branch.
